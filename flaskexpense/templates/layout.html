@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type='text/css'
+        href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='index.css')}}">
+    <title>Money Tracker</title>
+</head>
+
+<body>
+    <div class="ui inverted vertical center aligned segment">
+        <nav class="ui container">
+            <h1 class="ui inverted header">Money Tracker</h1>
+            <div class="ui borderless inverted compact menu">
+                {% block nav%}
+                {% endblock %}
+            </div>
+        </nav>
+        <div class="ui content container">
+            {% block content%}
+            {% endblock %}
+        </div>
+    </div>
+</body>
+
+</html>

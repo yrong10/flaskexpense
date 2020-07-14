@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% block nav%}
+<a class="item active" href="{{url_for('main.index')}}">Home</a>
+<a class="item" href="{{url_for('users.login')}}">Sign In</a>
+{% endblock%}
+{% block content %}
+<h1 class=" ui inverted header">Money Tracker</h1>
+<p>
+    An expense tracker web app built with python flask
+</p>
+<a class="ui huge button" href="{{url_for('users.register')}}">Sign Up</a>
+{% endblock %}

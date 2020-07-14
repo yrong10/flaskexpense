@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="ui grid stackable padded">
+    <div class="column">
+        <div class="ui inverted form error" id='dates'>
+            {{form.hidden_tag()}}
+            <form class="inline fields" method="GET" action=''>
+                <div class="field">
+                    <label>{{form.start_date.label}}</label>
+                    {{form.start_date}}
+                </div>
+                <div class="field">
+                    {% if form.end_date.errors %}
+                    <label>{{form.end_date.label}}</label>
+                    {{ form.end_date}}
+                    <div class="ui error message">
+                        {% for error in form.end_date.errors %}
+                        <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <label>{{form.end_date.label}}</label>
+                    {{ form.end_date}}
+                    {% endif %}
+                </div>
+                <button class="ui button" type="submit">Show</button>
+            </form>
+        </div>
+        <table class="ui inverted table">
+            <thead>
+                <tr>
+                    <th colspan="6">
+                        <H2>Expense History</H2>
+                        <a href="{{url_for('expenses.new_expense')}}">
+                            <i class="inverted plus circle icon"></i>
+                            Add Expense
+                        </a>
+                    </th>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th class="collapsing"></th>
+                    <th class="collapsing"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <h3>Total</h3>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <h4>{{'%0.2f' % total_price|float}}</h4>
+                    </td>
+                </tr>
+                {% for expense in expenses.items %}
+                <tr>
+                    <td>{{expense.name}}</td>
+                    <td>{{expense.date}}</td>
+                    <td>{{expense.category}}</td>
+                    <td>{{expense.price}}</td>
+                    <td class="right aligned collapsing">
+                        <form action="{{url_for('expenses.update_expense', expense_id=expense.id)}}" method="GET">
+                            <button type="submit" class="ui small vertical animated inverted secondary button"
+                                tabindex="0">
+                                <div class="hidden content">Edit</div>
+                                <div class="visible content">
+                                    <i class="inverted edit icon"></i>
+                                </div>
+                            </button>
+                        </form>
+                    </td>
+                    <td class="right aligned collapsing">
+                        <form action="{{url_for('expenses.delete_expense', expense_id=expense.id)}}" method="POST">
+                            <button type="submit" class="ui small vertical animated inverted secondary button"
+                                tabindex="0">
+                                <div class="hidden content">Delete</div>
+                                <div class="visible content">
+                                    <i class="inverted red trash icon"></i>
+                                </div>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="6">
+                        <div class="ui right floated inverted pagination menu">
+                            {% set start_date = request.args.get('start_date') %}
+                            {% set end_date = request.args.get('end_date') %}
+                            {% for page_num  in expenses.iter_pages(left_edge = 1, right_edge=1, left_current=1, right_current=2) %}
+                            {% if page_num %}
+                            {% if expenses.page == page_num%}
+                            <a class="primary item"
+                                href="{{url_for('expenses.dashboard',page=page_num, start_date=start_date, end_date=end_date)}}">{{page_num}}</a>
+                            {% else %}
+                            <a class="item"
+                                href="{{url_for('expenses.dashboard',page=page_num,start_date=start_date, end_date=end_date)}}">{{page_num}}</a>
+                            {% endif %}
+                            {% else %}
+                            <div class="item">...</div>
+                            {% endif %}
+                            {% endfor%}
+                        </div>
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+{% endblock%}

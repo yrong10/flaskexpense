@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+{% block nav%}
+<a class="item" href="{{url_for('main.index')}}">Home</a>
+<a class="item" href="{{url_for('users.login')}}">Sign In</a>
+{% endblock%}
+{% block content %}
+<div class=" ui left aligned inverted segment" id='register'>
+    <form class="ui form error" method="POST" action="">
+        {{form.hidden_tag()}}
+        <h2 class="ui dividing header">Register</h2>
+        <h4 class="ui dividing header">Already have an account? <a href="{{url_for('users.login')}}">Sign In</a></h4>
+        <div class=" field">
+            <label>{{form.username.label}}</label>
+            {% if form.username.errors %}
+            {{ form.username (placeholder='Username')}}
+            <div class="ui error message">
+                {% for error in form.username.errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.username (placeholder='Username')}}
+            {% endif %}
+        </div>
+        <div class="field">
+            <label>{{form.email.label}}</label>
+            {% if form.email.errors %}
+            {{ form.email (placeholder='Email')}}
+            <div class="ui error message">
+                {% for error in form.email.errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.email (placeholder='Email')}}
+            {% endif %}
+        </div>
+        <div class="field">
+            <label>{{form.password.label}}</label>
+            {% if form.password.errors %}
+            {{ form.password (placeholder='Password')}}
+            <div class="ui error message">
+                {% for error in form.password.errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.password (placeholder='Password')}}
+            {% endif %}
+        </div>
+        <div class="field">
+            <label>{{form.confirm_password.label}}</label>
+            {% if form.confirm_password.errors %}
+            {{ form.confirm_password (placeholder='Confirm Password')}}
+            <div class="ui error message">
+                {% for error in form.confirm_password.errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.confirm_password (placeholder='Confirm Password')}}
+            {% endif %}
+        </div>
+        {{form.submit (class='ui button')}}
+    </form>
+</div>
+{% endblock %}

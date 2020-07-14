@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+{% block nav%}
+<a class="item active" href="{{url_for('main.index')}}">Home</a>
+<a class="item" href="{{url_for('users.login')}}">Sign In</a>
+{% endblock%}
+{% block content %}
+<h1 class=" ui inverted header">Something went wrong (500)</h1>
+<p>
+    We're experiencing some trouble on our end. Please try again in the near future.
+</p>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="ui grid stackable padded">
+    <div class="column">
+        <table class="ui inverted celled table">
+            <thead>
+                <tr>
+                    <th class="collapsing">
+                        <H2>User Information</H2>
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <h3>Username</h3>
+                    </td>
+                    <td>{{current_user.username}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h3>User Email</h3>
+                    </td>
+                    <td>{{current_user.email}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock%}

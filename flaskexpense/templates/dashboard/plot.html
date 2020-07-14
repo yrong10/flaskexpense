@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="ui grid stackable padded">
+    <div class="column">
+        <div class="ui inverted form error" id='dates'>
+            {{form.hidden_tag()}}
+            <form class="inline fields" method="GET" action=''>
+                <div class="field">
+                    <label>{{form.start_date.label}}</label>
+                    {{form.start_date}}
+                </div>
+                <div class="field">
+                    {% if form.end_date.errors %}
+                    <label>{{form.end_date.label}}</label>
+                    {{ form.end_date}}
+                    <div class="ui error message">
+                        {% for error in form.end_date.errors %}
+                        <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <label>{{form.end_date.label}}</label>
+                    {{ form.end_date}}
+                    {% endif %}
+                </div>
+                <button class="ui button" type="submit">Show</button>
+            </form>
+        </div>
+        {% if div%}
+        {{ div|safe }}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bokeh/2.1.1/bokeh.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bokeh/2.1.1/bokeh-widgets.min.js"></script>
+        {{ script|safe }}
+        {% else %}
+        <h1>No expense during this period</h1>
+        {% endif %}
+    </div>
+</div>
+{% endblock%}

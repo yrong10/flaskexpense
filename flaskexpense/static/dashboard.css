@@ -1,0 +1,77 @@
+body {
+    background-color: rgb(79, 109, 107);
+}
+
+body ::-webkit-scrollbar {
+    width: 6px;
+}
+
+.ui.vertical.menu.sidebar-menu {
+    margin-top: 51.43px !important;
+    max-height: calc(100% - 51.43px) !important;
+    height: calc(100% - 51.43px) !important;
+}
+
+.ui.vertical.menu.sidebar-menu .item i.icon {
+    float: left;
+    margin: 0em 0.5em 0em 0em;
+}
+
+.main-content {
+    margin-top: 51.43px;
+    height: 100vh;
+}
+
+@media (min-width: 768px) {
+    .ui.vertical.menu.sidebar-menu {
+        visibility: visible;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        width: 15rem !important;
+    }
+
+    .ui.sidebar.menu .item {
+        font-size: 1.2rem;
+    }
+
+    .main-content {
+        height: 100vh;
+        margin-left: 15rem;
+        background-color: rgb(79, 109, 107);
+        align-items: center;
+    }
+
+    .sidebar-menu-toggler {
+        display: none !important;
+    }
+
+    h1 {
+        color: white;
+    }
+}
+
+#dates label {
+    font-size: 1.2rem;
+    margin-left: 1rem;
+}
+
+table a {
+    color: white;
+}
+
+#create {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.inverted.segment {
+    background-color: rgb(79, 109, 107) !important;
+}
+
+.inverted.segment h1 {
+    font-size: 4rem;
+}
+
+.inverted.segment p {
+    font-size: 2rem;
+}

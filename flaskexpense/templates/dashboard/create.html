@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="ui grid stackable padded">
+    <div class="column">
+        <form class="ui inverted form error" method="POST" action="" id='create'>
+            {{form.hidden_tag()}}
+            <div class="ui dividing inverted header">
+                <h2>{{form_title}}</h2>
+            </div>
+
+            <div class="field">
+                <label>{{form.name.label}}</label>
+                {% if form.name.errors %}
+                {{ form.name (placeholder='Name')}}
+                <div class="ui error message">
+                    {% for error in form.name.errors %}
+                    <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.name (placeholder='Name')}}
+                {% endif %}
+            </div>
+            <div class="field">
+                <label>{{form.date.label}}</label>
+                {% if form.date.errors %}
+                {{ form.date (placeholder='YYYY-MM-DD')}}
+                <div class="ui error message">
+                    {% for error in form.date.errors %}
+                    <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.date (placeholder='YYYY-MM-DD')}}
+                {% endif %}
+            </div>
+            <div class="field">
+                <label>{{form.category.label}}</label>
+                {% if form.category.errors %}
+                {{ form.category }}
+                <div class="ui error message">
+                    {% for error in form.category.errors %}
+                    <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.category }}
+                {% endif %}
+            </div>
+            <div class="field">
+                <label>{{form.price.label}}</label>
+                {% if form.price.errors %}
+                {{ form.price (placeholder='Amount')}}
+                <div class="ui error message">
+                    {% for error in form.price.errors %}
+                    <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.price (placeholder='Amount')}}
+                {% endif %}
+            </div>
+            {{form.submit (class='ui button')}}
+        </form>
+    </div>
+</div>
+{% endblock %}
